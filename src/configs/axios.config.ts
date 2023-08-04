@@ -1,11 +1,13 @@
+import { ACCESS_TOKEN } from 'app/constants'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import queryString from 'query-string'
 
 // export const baseURL = process.env.REACT_APP_API_URL_DEV;
 export const baseURL = process.env.REACT_APP_API_ORIGIN_URL
 export const axiosConfig = axios.create({
     baseURL: baseURL,
-    withCredentials:true,
+    withCredentials: true,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -13,12 +15,11 @@ export const axiosConfig = axios.create({
     paramsSerializer: (params) => queryString.stringify(params),
 })
 axiosConfig.interceptors.request.use(async (config) => {
-    // const session = window.sessionStorage.getItem(AUTH_LOCAL_TOKEN);
-    // const local = localStorage.getItem(AUTH_LOCAL_TOKEN)
+    const accessToken = Cookies.get(ACCESS_TOKEN)
     config = {
         ...config,
         headers: {
-            // 'Authorization': `Bearer ${session ?? local}`
+            'Authorization': `Bearer ${accessToken}`
         }
     }
     return config

@@ -4,10 +4,11 @@ import * as Yup from 'yup'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
-import { getUserByToken, login } from '../core/_requests'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
 import { _auth } from 'app/apis'
+import Cookies from 'js-cookie'
+import { ACCESS_TOKEN } from 'app/constants'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,10 +23,8 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  // email: 'bmt.long.faker@gmail.com',
-  // password: '12345',
-  email: "admin@demo.com",
-  password: "demo"
+  email: '',
+  password: ''
 }
 
 /*
@@ -36,7 +35,7 @@ const initialValues = {
 
 export function Login() {
   const [loading, setLoading] = useState(false)
-  const { saveAuth, setCurrentUser } = useAuth()
+  const { setCurrentUser, setRoles } = useAuth()
 
   const formik = useFormik({
     initialValues,
@@ -44,19 +43,17 @@ export function Login() {
     onSubmit: async (values, { setStatus, setSubmitting }) => {
       setLoading(true)
       try {
-        // const res = await _auth.login(values.email, values.password)
-        // console.log(res)
-        const { data: auth } = await login(values.email, values.password)
-        saveAuth(auth)
-        const { data: user } = await getUserByToken(auth.api_token)
-        setCurrentUser(user)
-        setLoading(false)
+        const { context } = await _auth.login(values.email, values.password)
+        Cookies.set(ACCESS_TOKEN, context.accessToken, {
+          secure: true
+        })
+        const data = await _auth.roles()
+        if (data) {
+          const { context: contextProfile } = await _auth.profile()
+          setCurrentUser(contextProfile)
+          setRoles(data.context.data)
+        }
       } catch (error) {
-        // console.error(error)
-        saveAuth(undefined)
-        setStatus('The login detail is incorrect')
-        setSubmitting(false)
-        setLoading(false)
         setLoading(false)
       }
     },

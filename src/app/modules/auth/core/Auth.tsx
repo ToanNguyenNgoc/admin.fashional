@@ -9,18 +9,21 @@ import {
   SetStateAction,
 } from 'react'
 import { LayoutSplashScreen } from '../../../../_metronic/layout/core'
-import { AuthModel, UserModel } from './_models'
 import * as authHelper from './AuthHelpers'
-import { getUserByToken } from './_requests'
 import { WithChildren } from '../../../../_metronic/helpers'
 import { _auth } from 'app/apis'
+import { User, UserRole } from 'app/models'
+import Cookies from 'js-cookie'
+import { ACCESS_TOKEN } from 'app/constants'
 
 type AuthContextProps = {
-  auth: AuthModel | undefined
-  saveAuth: (auth: AuthModel | undefined) => void
-  currentUser: UserModel | undefined
-  setCurrentUser: Dispatch<SetStateAction<UserModel | undefined>>
-  logout: () => void
+  auth: User | undefined
+  saveAuth: (auth: User | undefined) => void
+  currentUser: User | undefined
+  setCurrentUser: Dispatch<SetStateAction<User | undefined>>
+  logout: () => void,
+  roles: UserRole[]
+  setRoles: Dispatch<SetStateAction<UserRole[]>>
 }
 
 const initAuthContextPropsState = {
@@ -29,6 +32,8 @@ const initAuthContextPropsState = {
   currentUser: undefined,
   setCurrentUser: () => { },
   logout: () => { },
+  roles: [],
+  setRoles: () => { }
 }
 
 const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
@@ -38,9 +43,10 @@ const useAuth = () => {
 }
 
 const AuthProvider: FC<WithChildren> = ({ children }) => {
-  const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
-  const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
-  const saveAuth = (auth: AuthModel | undefined) => {
+  const [auth, setAuth] = useState<User | undefined>(authHelper.getAuth())
+  const [currentUser, setCurrentUser] = useState<User | undefined>()
+  const [roles, setRoles] = useState<UserRole[]>([])
+  const saveAuth = (auth: User | undefined) => {
     setAuth(auth)
     if (auth) {
       authHelper.setAuth(auth)
@@ -51,28 +57,33 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
 
   const logout = () => {
     saveAuth(undefined)
+    Cookies.remove(ACCESS_TOKEN)
     setCurrentUser(undefined)
   }
 
   return (
-    <AuthContext.Provider value={{ auth, saveAuth, currentUser, setCurrentUser, logout }}>
+    <AuthContext.Provider value={{ auth, saveAuth, currentUser, setCurrentUser, logout, roles, setRoles }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
 const AuthInit: FC<WithChildren> = ({ children }) => {
-  const { auth, logout, setCurrentUser } = useAuth()
+  const { logout, setCurrentUser, setRoles } = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
   useEffect(() => {
-    const requestUser = async (apiToken: string) => {
+    const requestUser = async () => {
       try {
         if (!didRequest.current) {
-          const { data } = await getUserByToken(apiToken)
-          if (data) {
-            setCurrentUser(data)
+          const { context } = await _auth.profile()
+          const { context: contextRoles } = await _auth.roles()
+          if (context) {
+            setCurrentUser(context)
+          }
+          if (contextRoles) {
+            setRoles(contextRoles.data)
           }
         }
       } catch (error) {
@@ -83,12 +94,12 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
       } finally {
         setShowSplashScreen(false)
       }
-
       return () => (didRequest.current = true)
     }
 
-    if (auth && auth.api_token) {
-      requestUser(auth.api_token)
+    if (Cookies.get(ACCESS_TOKEN)) {
+      // console.log(auth)
+      requestUser()
     } else {
       logout()
       setShowSplashScreen(false)

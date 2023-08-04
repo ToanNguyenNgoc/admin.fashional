@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTSVG} from '../../../helpers'
-import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
-import {AsideMenuItem} from './AsideMenuItem'
+import { useIntl } from 'react-intl'
+import { KTSVG } from '../../../helpers'
+import { AsideMenuItemWithSub } from './AsideMenuItemWithSub'
+import { AsideMenuItem } from './AsideMenuItem'
+import { PAccount, PBranch, PCategory, PProduct, PRole, PTag, RAccount, RBranch, RCategory, RProduct, RRole, RTag } from 'app/constants'
+import { RoleLayout } from 'app/components'
 
 export function AsideMenuMain() {
   const intl = useIntl()
@@ -13,7 +15,7 @@ export function AsideMenuMain() {
       <AsideMenuItem
         to='/dashboard'
         icon='/media/icons/duotune/art/art002.svg'
-        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
+        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
       />
       <AsideMenuItem
@@ -22,7 +24,7 @@ export function AsideMenuMain() {
         title='Layout Builder'
         fontIcon='bi-layers'
       />
-      <div className='menu-item'>
+      {/* <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
         </div>
@@ -84,28 +86,55 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/crafted/widgets/mixed' title='Mixed' hasBullet={true} />
         <AsideMenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
         <AsideMenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
+      </AsideMenuItemWithSub> */}
+      <div className='menu-item'>
+        <div className='menu-content pt-8 pb-2'>
+          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Ứng dụng</span>
+        </div>
+      </div>
+      <RoleLayout permissionPath={RBranch.GET} >
+        <AsideMenuItem fontIcon='bi-chat-left'
+          icon='/media/icons/duotune/general/gen001.svg'
+          to={PBranch.index} title='Chi nhánh'
+        />
+      </RoleLayout>
+      <RoleLayout permissionPath={RTag.GET}>
+        <AsideMenuItem fontIcon='bi-chat-left'
+          icon='/media/icons/duotune/general/gen025.svg'
+          to={PTag.index} title='Tag'
+        />
+      </RoleLayout>
+      <AsideMenuItemWithSub
+        to='/apps/chat'
+        title='Phân loại & Sản phẩm'
+        fontIcon='bi-chat-left'
+        icon='/media/icons/duotune/communication/com012.svg'
+      >
+        <RoleLayout permissionPath={RCategory.GET}>
+          <AsideMenuItem to={PCategory.index} title='Loại sản phẩm' hasBullet={true} />
+        </RoleLayout>
+        <RoleLayout permissionPath={RProduct.GET}>
+          <AsideMenuItem to={PProduct.index} title='Sản phẩm' hasBullet={true} />
+        </RoleLayout>
       </AsideMenuItemWithSub>
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
-          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
+          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Hệ thống</span>
         </div>
       </div>
       <AsideMenuItemWithSub
         to='/apps/chat'
-        title='Chat'
+        title='Nhân viên & Phân quyền'
         fontIcon='bi-chat-left'
-        icon='/media/icons/duotune/communication/com012.svg'
+        icon='/media/icons/duotune/general/gen049.svg'
       >
-        <AsideMenuItem to='/apps/chat/private-chat' title='Private Chat' hasBullet={true} />
-        <AsideMenuItem to='/apps/chat/group-chat' title='Group Chart' hasBullet={true} />
-        <AsideMenuItem to='/apps/chat/drawer-chat' title='Drawer Chart' hasBullet={true} />
+        <RoleLayout permissionPath={RAccount.GET}>
+          <AsideMenuItem to={PAccount.index} title='Tào khoản' hasBullet={true} />
+        </RoleLayout>
+        <RoleLayout permissionPath={RRole.GET}>
+          <AsideMenuItem to={PRole.index} title='Phân quyền' hasBullet={true} />
+        </RoleLayout>
       </AsideMenuItemWithSub>
-      <AsideMenuItem
-        to='/apps/user-management/users'
-        icon='/media/icons/duotune/general/gen051.svg'
-        title='User management'
-        fontIcon='bi-layers'
-      />
       <div className='menu-item'>
         <div className='menu-content'>
           <div className='separator mx-1 my-4'></div>

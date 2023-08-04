@@ -1,12 +1,13 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
+import { lazy, FC, Suspense } from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {MenuTestPage} from '../pages/MenuTestPage'
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
-import {WithChildren} from '../../_metronic/helpers'
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
+import { MenuTestPage } from '../pages/MenuTestPage'
+import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
+import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
+import { PAccount, PBranch, PCategory, PProduct, PRole, PTag } from 'app/constants'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -15,6 +16,48 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const AccountsPage = lazy(() => import('../pages/accounts/index'))
+  const AccountFormPage = lazy(() => import('../pages/accounts/account-form'))
+  const RolePage = lazy(() => import('../pages/roles/index'))
+  const BranchesPage = lazy(() => import('../pages/branches/index'))
+  const TagsPage = lazy(() => import('../pages/tags/index'))
+  const CategoryPage = lazy(() => import('../pages/categories/index'))
+  const ProductPage = lazy(() => import('../pages/products/index'))
+
+  const listOfRoleRoute = [
+    {
+      path: PAccount.index,
+      element: <AccountsPage />
+    },
+    {
+      path: PAccount.create,
+      element: <AccountFormPage />
+    },
+    {
+      path: PAccount.update,
+      element: <AccountFormPage />
+    },
+    {
+      path: PRole.index,
+      element: <RolePage />
+    },
+    {
+      path: PBranch.index,
+      element: <BranchesPage />
+    },
+    {
+      path: PTag.index,
+      element: <TagsPage />
+    },
+    {
+      path: PCategory.index,
+      element: <CategoryPage />
+    },
+    {
+      path: PProduct.index,
+      element: <ProductPage />
+    }
+  ]
 
   return (
     <Routes>
@@ -74,6 +117,19 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+        {
+          listOfRoleRoute.map(item => (
+            <Route
+              key={item.path}
+              path={item.path}
+              element={
+                <SuspensedView>
+                  {item.element}
+                </SuspensedView>
+              }
+            />
+          ))
+        }
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
@@ -81,7 +137,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({children}) => {
+const SuspensedView: FC<WithChildren> = ({ children }) => {
   const baseColor = getCSSVariableValue('--kt-primary')
   TopBarProgress.config({
     barColors: {
@@ -93,4 +149,4 @@ const SuspensedView: FC<WithChildren> = ({children}) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export {PrivateRoutes}
+export { PrivateRoutes }

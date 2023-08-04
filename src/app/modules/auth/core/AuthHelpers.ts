@@ -1,7 +1,9 @@
-import {AuthModel} from './_models'
+// import {AuthModel} from './_models'
+
+import { User } from "app/models"
 
 const AUTH_LOCAL_STORAGE_KEY = 'kt-auth-react-v'
-const getAuth = (): AuthModel | undefined => {
+const getAuth = (): User | undefined => {
   if (!localStorage) {
     return
   }
@@ -12,7 +14,7 @@ const getAuth = (): AuthModel | undefined => {
   }
 
   try {
-    const auth: AuthModel = JSON.parse(lsValue) as AuthModel
+    const auth: User = JSON.parse(lsValue) as User
     if (auth) {
       // You can easily check auth_token expiration also
       return auth
@@ -22,7 +24,7 @@ const getAuth = (): AuthModel | undefined => {
   }
 }
 
-const setAuth = (auth: AuthModel) => {
+const setAuth = (auth: User) => {
   if (!localStorage) {
     return
   }
@@ -52,8 +54,8 @@ export function setupAxios(axios: any) {
   axios.interceptors.request.use(
     (config: {headers: {Authorization: string}}) => {
       const auth = getAuth()
-      if (auth && auth.api_token) {
-        config.headers.Authorization = `Bearer ${auth.api_token}`
+      if (auth && auth.accessToken) {
+        config.headers.Authorization = `Bearer ${auth.accessToken}`
       }
 
       return config
