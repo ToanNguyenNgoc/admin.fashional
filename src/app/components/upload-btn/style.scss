@@ -1,0 +1,14 @@
+.upload-btn {
+    height: fit-content;
+
+    .MuiButtonBase-root {
+        border-radius: 100%;
+        padding: 0px;
+        height: fit-content;
+        min-width: unset;
+
+        .MuiCircularProgress-root {
+            color: var(--kt-gray-100);
+        }
+    }
+}

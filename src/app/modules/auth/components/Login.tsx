@@ -67,7 +67,7 @@ export function Login() {
       id='kt_login_signin_form'
     >
       {/* begin::Heading */}
-      <div className='text-center mb-10'>
+      {/* <div className='text-center mb-10'>
         <h1 className='text-dark mb-3'>Sign In to Metronic</h1>
         <div className='text-gray-400 fw-bold fs-4'>
           New Here?{' '}
@@ -75,7 +75,7 @@ export function Login() {
             Create an Account
           </Link>
         </div>
-      </div>
+      </div> */}
       {/* begin::Heading */}
 
       {formik.status && (
@@ -114,15 +114,15 @@ export function Login() {
         <div className='d-flex justify-content-between mt-n5'>
           <div className='d-flex flex-stack mb-2'>
             {/* begin::Label */}
-            <label className='form-label fw-bolder text-dark fs-6 mb-0'>Password</label>
+            <label className='form-label fw-bolder text-dark fs-6 mb-0'>Mật khẩu</label>
             {/* end::Label */}
             {/* begin::Link */}
             <Link
-              to='/auth/forgot-password'
+              to='/auth/forgot'
               className='link-primary fs-6 fw-bolder'
               style={{ marginLeft: '5px' }}
             >
-              Forgot Password ?
+              Quên mật khẩu ?
             </Link>
             {/* end::Link */}
           </div>

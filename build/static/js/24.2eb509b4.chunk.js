@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkadmin_fashional_pro=self.webpackChunkadmin_fashional_pro||[]).push([[24],{24:function(a,i,n){n.r(i);var e=n(2111),s=n(3654),r=n(184);i.default=function(){return(0,r.jsx)(e.uR,{permissionPath:s.Ju.GET,isNavigate:!0,children:(0,r.jsx)("div",{children:"RolePage"})})}}}]);
-//# sourceMappingURL=24.2eb509b4.chunk.js.map

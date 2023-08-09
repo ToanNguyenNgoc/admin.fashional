@@ -129,7 +129,7 @@ export function AsideMenuMain() {
         icon='/media/icons/duotune/general/gen049.svg'
       >
         <RoleLayout permissionPath={RAccount.GET}>
-          <AsideMenuItem to={PAccount.index} title='Tào khoản' hasBullet={true} />
+          <AsideMenuItem to={PAccount.index} title='Tài khoản' hasBullet={true} />
         </RoleLayout>
         <RoleLayout permissionPath={RRole.GET}>
           <AsideMenuItem to={PRole.index} title='Phân quyền' hasBullet={true} />

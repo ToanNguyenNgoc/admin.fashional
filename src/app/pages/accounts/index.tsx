@@ -1,5 +1,4 @@
-import { Button } from "@mui/material";
-import { toAbsoluteUrl } from "_metronic/helpers";
+import { Avatar, Button } from "@mui/material";
 import { _account } from "app/apis";
 import { PageTitle, RoleLayout, SwitchButton } from "app/components";
 import { PAccount, RAccount } from "app/constants";
@@ -67,13 +66,7 @@ function AccountPage() {
                         <td>
                           <div className='d-flex align-items-center'>
                             <div className='symbol symbol-50px me-5'>
-                              <span className='symbol-label bg-light'>
-                                <img
-                                  src={toAbsoluteUrl('/media/svg/avatars/001-boy.svg')}
-                                  className='h-75 align-self-end'
-                                  alt=''
-                                />
-                              </span>
+                              <Avatar src={i.avatar || i.fullname} alt="" />
                             </div>
                             <div className='d-flex justify-content-start flex-column'>
                               <span className='text-dark fw-bold mb-1 fs-6'>

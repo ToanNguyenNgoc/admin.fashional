@@ -7831,6 +7831,13 @@
   "resolved" "https://registry.npmjs.org/react-from-dom/-/react-from-dom-0.6.2.tgz"
   "version" "0.6.2"
 
+"react-google-recaptcha-v3@^1.10.1":
+  "integrity" "sha512-K3AYzSE0SasTn+XvV2tq+6YaxM+zQypk9rbCgG4OVUt7Rh4ze9basIKefoBz9sC0CNslJj9N1uwTTgRMJQbQJQ=="
+  "resolved" "https://registry.npmjs.org/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.10.1.tgz"
+  "version" "1.10.1"
+  dependencies:
+    "hoist-non-react-statics" "^3.3.2"
+
 "react-inlinesvg@3.0.0":
   "integrity" "sha512-zUt0DW3cKBk+vYZJJCzJqA9STRb+ZFmKLQFWurTvM4UR6vyHT8kHZSzyZZseX9BUNbTFJAfirtwpt97BWDJoSg=="
   "resolved" "https://registry.npmjs.org/react-inlinesvg/-/react-inlinesvg-3.0.0.tgz"

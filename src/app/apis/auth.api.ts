@@ -1,6 +1,6 @@
 // import { axiosConfig } from "../../configs"
 
-import { ResponseDetail, ResponseList, User, UserRole } from "app/models"
+import { BodyForgot, ResponseDetail, ResponseList, User, UserRole } from "app/models"
 import { axiosConfig } from "configs"
 
 export const _auth = {
@@ -9,6 +9,9 @@ export const _auth = {
   },
   profile: () => {
     return axiosConfig.get('/v1/auth/profile').then<ResponseDetail<User>>(res => res.data)
+  },
+  forgot: (body: BodyForgot) => {
+    return axiosConfig.post('/v1/auth/forgot', body).then(res => res.data)
   },
   roles: () => {
     return axiosConfig.get('/v1/auth/roles', { params: { 'includes': 'permissions' } })

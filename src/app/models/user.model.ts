@@ -12,6 +12,8 @@ export interface User {
     status: boolean;
     telephone: string;
     updated_at: string;
+    avatar:string|null;
+    address:string|null
 }
 export interface Account extends User {
     roles: Array<{
