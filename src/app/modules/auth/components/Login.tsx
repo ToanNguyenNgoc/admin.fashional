@@ -8,7 +8,7 @@ import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
 import { _auth } from 'app/apis'
 import Cookies from 'js-cookie'
-import { ACCESS_TOKEN } from 'app/constants'
+import { ACCESS_TOKEN, TOKEN_EXPERTED_AT } from 'app/constants'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -45,6 +45,9 @@ export function Login() {
       try {
         const { context } = await _auth.login(values.email, values.password)
         Cookies.set(ACCESS_TOKEN, context.accessToken, {
+          secure: true
+        })
+        Cookies.set(TOKEN_EXPERTED_AT, context.token_expired_at, {
           secure: true
         })
         const data = await _auth.roles()

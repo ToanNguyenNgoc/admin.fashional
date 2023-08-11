@@ -3,6 +3,7 @@ import { Role } from "./role.model";
 
 export interface User {
     accessToken: string;
+    token_expired_at:string;
     created_at: string;
     deleted: boolean;
     email: string;
