@@ -24,3 +24,8 @@ export interface Permission {
     path: string;
     updated_at: string
 }
+export interface RoleBody {
+    name?: string;
+    status?: boolean;
+    permissions?: number[]
+}

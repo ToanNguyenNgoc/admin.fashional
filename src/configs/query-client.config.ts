@@ -18,5 +18,7 @@ export const queryClient = new QueryClient({
 export const STALE_TIME = 60 * 60 * (60 * 1000)
 
 export const QR_KEY = {
-    account: 'account'
+    account: 'account',
+    role:'role',
+    permission:'permission'
 }

@@ -1,2 +1,5 @@
 export * from "./auth.api"
 export * from "./account.api"
+export * from "./role.api"
+export * from "./permission.api"
+export * from "./media.api"

@@ -1,0 +1,26 @@
+.select-cnt {
+  .form-control-solid {
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  position: relative;
+
+  .list-cnt {
+    position: absolute;
+    z-index: 2;
+    background-color: var(--kt-white);
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s;
+    top: calc(100% + 18px);
+  }
+
+  .list-cnt-act {
+    visibility: visible;
+    opacity: 1;
+    transition: all .4s;
+    top: calc(100% + 8px);
+  }
+}

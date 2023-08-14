@@ -1,16 +1,17 @@
 import { _account } from "app/apis";
-import { PageTitle, RoleLayout, UploadBtn } from "app/components";
+import { PageTitle, RoleLayout, SelectRole, UploadBtn } from "app/components";
 import { RAccount } from "app/constants";
-import { usePermission } from "app/hooks";
+import { useMedia, usePermission } from "app/hooks";
 import { QR_KEY } from "configs";
 import { useFormik } from "formik";
-import { Fragment } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import './style.scss'
 
 function AccountForm() {
     const { id } = useParams()
+    const { handlePostMedia, isLoading: isLoadingMedia } = useMedia()
     const { resolve } = usePermission(RAccount.GET_ID)
     const formik = useFormik({
         initialValues: {
@@ -19,17 +20,31 @@ function AccountForm() {
             telephone: '',
             avatar: '',
             status: false,
+            roles: []
         },
         onSubmit: (values) => {
             console.log(values)
         }
     })
-    const { data } = useQuery({
+    useQuery({
         queryKey: [QR_KEY.account, id],
         queryFn: () => _account.findById(id || 0),
-        enabled: !!(id && resolve)
+        enabled: !!(id && resolve),
+        onSuccess: (data) => {
+            formik.setFieldValue('fullname', data.context.fullname)
+            formik.setFieldValue('email', data.context.email)
+            formik.setFieldValue('telephone', data.context.telephone)
+            formik.setFieldValue('avatar', data.context.avatar)
+            formik.setFieldValue('roles', data.context.roles?.map(i => i.role))
+        }
     })
-    console.log(data)
+    const onChangeMedia = (e: ChangeEvent<HTMLInputElement>) => {
+        handlePostMedia({
+            e,
+            resetOriginalResult: true,
+            callBack: (data) => formik.setFieldValue('avatar', data[0].original_url)
+        })
+    }
 
     return (
         <RoleLayout permissionPath={id ? RAccount.PUT : RAccount.POST} isNavigate>
@@ -41,39 +56,46 @@ function AccountForm() {
                             <div className="avatar-image">
                                 <img src={formik.values.avatar} alt="" />
                                 <div className="btn-avatar-cnt">
-                                    <UploadBtn
-                                        id="file_avatar"
-                                    />
+                                    <UploadBtn loading={isLoadingMedia} id="file_avatar" onChange={onChangeMedia} />
                                 </div>
                             </div>
                         </div>
                         <div className="column my-3">
                             <label className="form-label required">Họ và tên</label>
-                            <input type="text" className="form-control form-control-solid" placeholder="Họ và tên" />
+                            <input name='fullname' value={formik.values.fullname} onChange={formik.handleChange} type="text"
+                                className="form-control form-control-solid" placeholder="Họ và tên"
+                            />
                         </div>
                         <div className="d-flex justify-content-between row-2">
                             <div className="column-2 my-3">
                                 <label className="form-label required">Email</label>
-                                <input type="text" className="form-control form-control-solid" placeholder="Email" />
+                                <input type="text" name="email" value={formik.values.email} onChange={formik.handleChange}
+                                    className="form-control form-control-solid" placeholder="Email"
+                                />
                             </div>
                             <div className="column-2 my-3">
                                 <label className="form-label required">Số điện thoại</label>
-                                <input type="text" className="form-control form-control-solid" placeholder="Số điện thoại" />
+                                <input
+                                    type="text" name="telephone" value={formik.values.telephone} onChange={formik.handleChange}
+                                    className="form-control form-control-solid" placeholder="Số điện thoại"
+                                />
                             </div>
                         </div>
                         <div className="d-flex justify-content-between row-2">
                             <div className="column-2 my-3">
                                 <label className="form-label required">Mật khẩu</label>
-                                <input type="text" className="form-control form-control-solid" placeholder="Mật khẩu" />
+                                <input disabled={!!id} type="password" className="form-control form-control-solid" placeholder="Mật khẩu" />
                             </div>
                             <div className="column-2 my-3">
                                 <label className="form-label required">Nhập lại mật khẩu</label>
-                                <input type="text" className="form-control form-control-solid" placeholder="Nhập lại mật khẩu" />
+                                <input disabled={!!id} type="password" className="form-control form-control-solid" placeholder="Nhập lại mật khẩu" />
                             </div>
                         </div>
                         <div className="column my-3">
-                            <label className="form-label required">Địa chỉ</label>
-                            <input type="text" className="form-control form-control-solid" placeholder="Địa chỉ" />
+                            <SelectRole
+                                value={formik.values.roles}
+                                onChange={(e) => formik.setFieldValue('roles', e)}
+                            />
                         </div>
                     </form>
                 </div>

@@ -16,15 +16,15 @@ interface ResultOptions {
 }
 
 export function useMessage() {
-    const [noti, setNoti] = useState<Noti>({
+    const [notification, setNotification] = useState<Noti>({
         load: false,
         message: "",
         openAlert: false,
         color: 'info'
     })
-    const firstLoad = () => setNoti({ ...noti, load: true })
-    const resultLoad = (options: ResultOptions) => {
-        setNoti({
+    const first = () => setNotification({ ...notification, load: true })
+    const result = (options: ResultOptions) => {
+        setNotification({
             load: false,
             message: options.message ?? '',
             openAlert: true,
@@ -32,6 +32,6 @@ export function useMessage() {
             color: options.color
         })
     }
-    const onCloseNoti = () => setNoti({ ...noti, openAlert: false })
-    return { noti, firstLoad, resultLoad, onCloseNoti }
+    const onClose = () => setNotification({ ...notification, openAlert: false })
+    return { notification, first, result, onClose }
 }

@@ -17,7 +17,7 @@ export function ForgotPassword() {
   const token: any = queryString.parse(useLocation().search).token
   const navigate = useNavigate()
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false)
-  const { resultLoad, noti, onCloseNoti } = useMessage()
+  const { result, notification, onClose } = useMessage()
   const [captcha, setCaptcha] = useState('')
   const verifyRecaptchaCallback = useCallback((tokenCaptcha: string) => {
     setCaptcha(tokenCaptcha)
@@ -26,7 +26,7 @@ export function ForgotPassword() {
     mutationFn: (body: BodyForgot) => _auth.forgot(body),
     onSuccess: (data) => {
       setRefreshReCaptcha(r => !r)
-      resultLoad({
+      result({
         message: data.context.message,
         color: 'success',
       })
@@ -34,7 +34,7 @@ export function ForgotPassword() {
     },
     onError: (err) => {
       const error = err as AxiosError
-      resultLoad({
+      result({
         message: error.response?.data.message,
         color: 'error'
       })
@@ -74,7 +74,7 @@ export function ForgotPassword() {
         nonce: undefined,
       }}
     >
-      <Snack open={noti.openAlert} onClose={onCloseNoti} severity={noti.color} message={noti.message} />
+      <Snack open={notification.openAlert} onClose={onClose} severity={notification.color} message={notification.message} />
       {
         !token ?
           <>

@@ -12,6 +12,10 @@ export const RRole = {
     PUT: 'v1/roles/:id.PUT',
     DELETE: 'v1/roles/:id.DELETE'
 }
+export const RPermission = {
+    GET: 'v1/permissions.GET',
+    POST: 'v1/permissions.POST',
+}
 export const RBranch = {
     GET: 'v1/banners.GET',
     GET_ID: 'v1/banners/:id.GET',

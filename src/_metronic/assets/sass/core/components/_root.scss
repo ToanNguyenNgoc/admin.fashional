@@ -1,7 +1,12 @@
 //
 // CSS Variables
 //
-
+ul{
+    padding: 0px;
+}
+li{
+    list-style: none;
+}
 :root,
 [data-theme="light"] {
     // Breakpoints

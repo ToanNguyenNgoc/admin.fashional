@@ -17,5 +17,8 @@ export const PAccount = {
     update_id: (id: number | string) => `/pages/accounts-form/${id}`
 }
 export const PRole = {
-    index: '/pages/roles'
+    index: '/pages/roles',
+    create: '/pages/roles-form',
+    update: '/pages/roles-form/:id',
+    update_id: (id: number | string) => `/pages/roles-form/${id}`
 }

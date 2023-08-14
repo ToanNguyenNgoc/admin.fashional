@@ -19,6 +19,7 @@ const PrivateRoutes = () => {
   const AccountsPage = lazy(() => import('../pages/accounts/index'))
   const AccountFormPage = lazy(() => import('../pages/accounts/account-form'))
   const RolePage = lazy(() => import('../pages/roles/index'))
+  const RoleFormPage = lazy(() => import('../pages/roles/role-form'))
   const BranchesPage = lazy(() => import('../pages/branches/index'))
   const TagsPage = lazy(() => import('../pages/tags/index'))
   const CategoryPage = lazy(() => import('../pages/categories/index'))
@@ -37,10 +38,20 @@ const PrivateRoutes = () => {
       path: PAccount.update,
       element: <AccountFormPage />
     },
+    // [Role]
     {
       path: PRole.index,
       element: <RolePage />
     },
+    {
+      path: PRole.create,
+      element: <RoleFormPage />
+    },
+    {
+      path: PRole.update,
+      element: <RoleFormPage />
+    },
+    // [Tag]
     {
       path: PBranch.index,
       element: <BranchesPage />
