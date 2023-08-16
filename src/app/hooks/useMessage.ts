@@ -9,7 +9,7 @@ interface Noti {
     color?: AlertColor
 }
 
-interface ResultOptions {
+export interface ResultOptions {
     message?: string;
     element?: React.ReactElement;
     color?: AlertColor

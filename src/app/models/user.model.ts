@@ -3,7 +3,7 @@ import { Role } from "./role.model";
 
 export interface User {
     accessToken: string;
-    token_expired_at:string;
+    token_expired_at: string;
     created_at: string;
     deleted: boolean;
     email: string;
@@ -13,8 +13,8 @@ export interface User {
     status: boolean;
     telephone: string;
     updated_at: string;
-    avatar:string|null;
-    address:string|null
+    avatar: string | null;
+    address: string | null
 }
 export interface Account extends User {
     roles: Array<{
@@ -22,9 +22,17 @@ export interface Account extends User {
     }>
 }
 export interface QrAccount extends Page {
-    'search'?: string;
-    'status'?: boolean;
-    'manager'?: boolean;
-    'created_at'?: string;
-    'includes'?: 'roles' | ''
+    search?: string;
+    status?: boolean;
+    manager?: boolean;
+    created_at?: string;
+    includes?: 'roles' | ''
+}
+export interface AccountBody {
+    fullname?: string;
+    email?: string;
+    avatar?: string;
+    password?: string;
+    roles?: number[];
+    status?: boolean
 }
