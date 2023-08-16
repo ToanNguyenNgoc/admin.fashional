@@ -19,6 +19,7 @@ export const STALE_TIME = 60 * 60 * (60 * 1000)
 
 export const QR_KEY = {
     account: 'account',
-    role:'role',
-    permission:'permission'
+    role: 'role',
+    permission: 'permission',
+    branch: 'branch'
 }

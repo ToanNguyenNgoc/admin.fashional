@@ -21,6 +21,7 @@ const PrivateRoutes = () => {
   const RolePage = lazy(() => import('../pages/roles/index'))
   const RoleFormPage = lazy(() => import('../pages/roles/role-form'))
   const BranchesPage = lazy(() => import('../pages/branches/index'))
+  const BranchFormPage = lazy(() => import('../pages/branches/branch-from'))
   const TagsPage = lazy(() => import('../pages/tags/index'))
   const CategoryPage = lazy(() => import('../pages/categories/index'))
   const ProductPage = lazy(() => import('../pages/products/index'))
@@ -51,11 +52,20 @@ const PrivateRoutes = () => {
       path: PRole.update,
       element: <RoleFormPage />
     },
-    // [Tag]
+    // [Branch]
     {
       path: PBranch.index,
       element: <BranchesPage />
     },
+    {
+      path: PBranch.create,
+      element: <BranchFormPage />
+    },
+    {
+      path: PBranch.update,
+      element: <BranchFormPage />
+    },
+    // [Tag]
     {
       path: PTag.index,
       element: <TagsPage />

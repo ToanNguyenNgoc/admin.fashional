@@ -1,5 +1,8 @@
 export const PBranch = {
-    index: '/pages/branches'
+    index: '/pages/branches',
+    create: '/pages/branches-form',
+    update: '/pages/branches-form/:id',
+    update_id: (id: number | string) => `/pages/branches-form/${id}`
 }
 export const PTag = {
     index: '/pages/tags'
