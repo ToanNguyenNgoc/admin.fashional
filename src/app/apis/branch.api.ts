@@ -8,6 +8,9 @@ export const _branch = {
   findById: (id: number | string) => {
     return axiosConfig.get(`/v1/branches/${id}`).then<ResponseDetail<Branch>>(res => res.data)
   },
+  create: (body: BranchBody) => {
+    return axiosConfig.post('/v1/branches', body).then(res => res.data)
+  },
   update: (id: number | string, body: BranchBody) => {
     return axiosConfig.put(`/v1/branches/${id}`, body).then(res => res.data)
   }

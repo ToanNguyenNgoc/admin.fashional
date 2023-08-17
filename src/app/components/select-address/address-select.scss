@@ -1,0 +1,48 @@
+.province_cnt {
+    position: relative;
+    input:first-child{
+      cursor: pointer;
+    }
+  
+    .province_select {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+      position: absolute;
+      width: 100%;
+      background-color: var(--kt-white);
+      width: calc(100% - 20px);
+      height: 260px;
+      border-radius: 8px;
+      z-index: 1;
+      margin-top: 30px;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .4s;
+  
+      .province_list {
+        height: calc(100% - 54px);
+        overflow-y: scroll;
+  
+        .list_item {
+          padding: 3px 0px;
+  
+          .MuiButtonBase-root {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+  
+    .province_select_act,
+    .district_select_act,
+    .ward_select_act {
+      margin-top: 10px;
+      visibility: visible;
+      opacity: 1;
+      transition: all .4s;
+    }
+  }
