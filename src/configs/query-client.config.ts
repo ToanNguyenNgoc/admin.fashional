@@ -21,5 +21,6 @@ export const QR_KEY = {
     account: 'account',
     role: 'role',
     permission: 'permission',
-    branch: 'branch'
+    branch: 'branch',
+    tag:'tag'
 }

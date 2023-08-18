@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkadmin_fashional_pro=self.webpackChunkadmin_fashional_pro||[]).push([[907],{8907:function(a,i,n){n.r(i);var e=n(7569),s=n(3654),r=n(184);i.default=function(){return(0,r.jsx)(e.uR,{permissionPath:s.MM.GET,isNavigate:!0,children:(0,r.jsx)("div",{children:"CategoryPage"})})}}}]);
-//# sourceMappingURL=907.5ca35469.chunk.js.map
