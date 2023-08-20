@@ -40,17 +40,6 @@ axiosConfig.interceptors.request.use(async (config) => {
     }
     return config
 })
-// axios.interceptors.response.use(
-//     (response) => {
-//         if (response && response.data) {
-//             return response.data
-//         }
-//         return response
-//     },
-//     (error) => {
-//         throw error
-//     }
-// )
 const validRefreshToken = () => {
     let refresh = false
     const dateString = Cookies.get(TOKEN_EXPERTED_AT)

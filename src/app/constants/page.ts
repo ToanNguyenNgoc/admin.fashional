@@ -8,7 +8,10 @@ export const PTag = {
     index: '/pages/tags'
 }
 export const PCategory = {
-    index: '/pages/categories'
+    index: '/pages/categories',
+    create: '/pages/categories-form',
+    update: '/pages/categories-form/:id',
+    update_id: (id: number | string) => `/pages/categories-form/${id}`
 }
 export const PProduct = {
     index: '/pages/products'

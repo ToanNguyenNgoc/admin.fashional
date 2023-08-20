@@ -57,13 +57,14 @@ const IOSSwitch = styled((props: SwitchProps) => (
 interface SwitchButtonProps {
     label?: string;
     value?: boolean;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    disable?:boolean
 }
 
-export const SwitchButton = ({ label = "", value = false, onChange }: SwitchButtonProps) => {
+export const SwitchButton = ({ label = "", value = false, onChange, disable }: SwitchButtonProps) => {
     return (
         <FormControlLabel
-            control={<IOSSwitch onChange={onChange} sx={{ m: 1 }} value={value} checked={value} />}
+            control={<IOSSwitch disabled={disable} onChange={onChange} sx={{ m: 1 }} value={value} checked={value} />}
             label={label}
         />
     )

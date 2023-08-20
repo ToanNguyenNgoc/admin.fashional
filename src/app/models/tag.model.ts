@@ -11,6 +11,7 @@ export interface Tag {
     created_at: string
 }
 export interface QrTag extends Page{
+    search?:string;
     status?:boolean
     sort?:string
 }
