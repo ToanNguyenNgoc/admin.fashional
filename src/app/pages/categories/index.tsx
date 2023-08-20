@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { _category } from "app/apis";
-import { FaSpinner, PageTitle, RoleLayout, SwitchButton } from "app/components";
+import { FaSpinner, PageTitle, RoleLayout, SwitchButton, XPagination } from "app/components";
 import { PCategory, RCategory } from "app/constants";
 import { usePermission } from "app/hooks";
 import { Category, CategoryBody, QrCategory } from "app/models";
@@ -22,6 +22,16 @@ function CategoryPage() {
       "limit": 15
     })
   })
+  const onChangePage = (p: number) => {
+    const newQuery = {
+      ...query,
+      page: p
+    }
+    navigate({
+      pathname: location.pathname,
+      search: queryString.stringify(newQuery)
+    })
+  }
   return (
     <RoleLayout permissionPath={RCategory.GET} isNavigate >
       <>
@@ -64,6 +74,13 @@ function CategoryPage() {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className="d-flex justify-content-end">
+            <XPagination
+              totalPage={data?.context.total_page ?? 1}
+              onChangePage={onChangePage}
+              defaultPage={query?.page ?? 1}
+            />
           </div>
         </div>
       </>
