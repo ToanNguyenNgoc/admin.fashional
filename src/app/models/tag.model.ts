@@ -13,7 +13,8 @@ export interface Tag {
 export interface QrTag extends Page{
     search?:string;
     status?:boolean
-    sort?:string
+    sort?:string;
+    tag_id?:number|string
 }
 export interface TagBody {
     name?:string;

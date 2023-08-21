@@ -42,5 +42,9 @@ export const RProduct = {
     GET_ID: 'v1/products/:id.GET',
     POST: 'v1/products.POST',
     PUT: 'v1/products/:id.PUT',
-    DELETE: 'v1/products/:id.DELETE'
+    DELETE: 'v1/products/:id.DELETE',
+
+    PUT_BRANCH : 'v1/products/:id/branches/:child_id.PUT',
+    POST_BRANCH:'v1/products/:id/branches/.POST',
+    DELETE_BRANCH:'v1/products/:id/branches/:child_id.DELETE'
 }

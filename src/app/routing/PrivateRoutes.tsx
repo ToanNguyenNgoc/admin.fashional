@@ -26,8 +26,12 @@ const PrivateRoutes = () => {
   const CategoryPage = lazy(() => import('../pages/categories/index'))
   const CategoryFormPage = lazy(()=> import("../pages/categories/category-form"))
   const ProductPage = lazy(() => import('../pages/products/index'))
+  const ProductFormPage = lazy(() => import("../pages/products/products-form"))
 
-  const listOfRoleRoute = [
+  const listOfRoleRoute:Array<{
+    path:string;
+    element:JSX.Element
+  }> = [
     {
       path: PAccount.index,
       element: <AccountsPage />
@@ -84,9 +88,18 @@ const PrivateRoutes = () => {
       path:PCategory.update,
       element:<CategoryFormPage/>
     },
+    // [Product]
     {
       path: PProduct.index,
       element: <ProductPage />
+    },
+    {
+      path:PProduct.create,
+      element:<ProductFormPage/>
+    },
+    {
+      path:PProduct.update,
+      element:<ProductFormPage/>
     }
   ]
 

@@ -25,7 +25,7 @@ const DashboardPage: FC = () => {
   return (
     <>
       {/* begin::Row */}
-      <span>{s}</span>
+      {/* <span>{s}</span> */}
       <div className='row gy-5 g-xl-8'>
         <div className='col-xxl-4'>
           <MixedWidget2

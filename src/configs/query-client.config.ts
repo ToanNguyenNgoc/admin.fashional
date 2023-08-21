@@ -23,5 +23,8 @@ export const QR_KEY = {
     permission: 'permission',
     branch: 'branch',
     tag:'tag',
-    category:'category'
+    category:'category',
+    product:'product',
+    product_media:'product_media',
+    product_branch:'product_branch'
 }

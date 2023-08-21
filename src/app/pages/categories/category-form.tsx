@@ -1,12 +1,9 @@
-import { FormControl, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { _category, _tag } from "app/apis";
-import { PageTitle, RoleLayout, Snack, SwitchButton } from "app/components";
+import { _category } from "app/apis";
+import { PageTitle, RoleLayout, SelectTag, Snack, SwitchButton } from "app/components";
 import { RCategory } from "app/constants";
 import { QR_KEY } from "configs";
-import { FC, useCallback, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { debounce } from "lodash"
 import { useFormik } from "formik";
 import { LoadingButton } from "@mui/lab";
 import * as Yup from "yup"
@@ -35,7 +32,7 @@ function CategoryForm() {
     initialValues: {
       name: '',
       tag_id: '',
-      status: true
+      status: true,
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Nhập tên"),
@@ -100,49 +97,6 @@ function CategoryForm() {
       </>
     </RoleLayout>
   );
-}
-
-interface SelectTagProps {
-  value?: number | string;
-  onChange?: (e: SelectChangeEvent<string | number>) => void
-}
-
-const SelectTag: FC<SelectTagProps> = ({ value, onChange = () => { } }) => {
-  const [search, setSearch] = useState('')
-  const { data: dataTags } = useQuery({
-    queryKey: [QR_KEY.tag, search],
-    queryFn: () => _tag.findAll({
-      'search': search,
-      'status': true
-    })
-  })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const onDebounce = useCallback(
-    debounce((keyword) => setSearch(keyword), 800),
-    []
-  );
-  return (
-    <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        size="small"
-        value={value}
-        defaultValue={''}
-        onChange={onChange}
-      >
-        <TextField
-          size="small" style={{ width: '100%' }} id="filled-basic" variant="filled"
-          placeholder="Tìm kiếm..." onChange={(e) => onDebounce(e.target.value)}
-        />
-        {
-          dataTags?.context.data?.map(tag => (
-            <MenuItem key={tag.id} value={tag.id}>*{tag.name}</MenuItem>
-          ))
-        }
-      </Select>
-    </FormControl>
-  )
 }
 
 export default CategoryForm;

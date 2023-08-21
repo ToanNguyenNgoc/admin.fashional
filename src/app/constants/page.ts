@@ -14,7 +14,10 @@ export const PCategory = {
     update_id: (id: number | string) => `/pages/categories-form/${id}`
 }
 export const PProduct = {
-    index: '/pages/products'
+    index: '/pages/products',
+    create: '/pages/products-form',
+    update: '/pages/products-form/:id',
+    update_id: (id: number | string) => `/pages/products-form/${id}`
 }
 export const PAccount = {
     index: '/pages/accounts',

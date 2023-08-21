@@ -1,11 +1,12 @@
 .form {
-    .avatar-image{
+    .avatar-image {
         width: 25%;
         aspect-ratio: 1 / 1;
         position: relative;
         background-color: var(--kt-gray-200);
         border-radius: 6px;
-        img{
+
+        img {
             position: absolute;
             z-index: 1;
             width: 100%;
@@ -13,7 +14,8 @@
             object-fit: cover;
             border-radius: 6px;
         }
-        .btn-avatar-cnt{
+
+        .btn-avatar-cnt {
             position: absolute;
             z-index: 2;
             width: 100%;
@@ -23,6 +25,7 @@
             align-items: center;
         }
     }
+
     .row-2 {
         .column-2 {
             width: calc(50% - 8px);

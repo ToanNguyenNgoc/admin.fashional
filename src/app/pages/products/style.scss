@@ -1,0 +1,101 @@
+.form {
+  .avatar-image {
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    background-color: var(--kt-gray-200);
+    border-radius: 6px;
+
+    img {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .btn-avatar-cnt {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .row-2 {
+    .column-2 {
+      width: calc(50% - 8px);
+    }
+  }
+
+  .row-3 {
+    .column {
+      width: calc(33% - 8px);
+    }
+  }
+}
+
+.product-media {
+  grid-gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+
+  .media-item {
+    aspect-ratio: 1/1;
+    background-color: var(--kt-gray-200);
+    border-radius: 8px;
+    position: relative;
+
+    .MuiChip-root {
+      top: -6px;
+      right: -6px;
+      position: absolute;
+      z-index: 3;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        display: none;
+      }
+
+      svg {
+        margin: 0px;
+      }
+    }
+
+    img,
+    video {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    video {
+      object-fit: contain;
+    }
+
+    .item-image-load {
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backdrop-filter: blur(2px);
+      border-radius: 8px;
+
+      span {
+        color: var(--white);
+      }
+    }
+  }
+}
