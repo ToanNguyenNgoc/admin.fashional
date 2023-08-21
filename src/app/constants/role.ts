@@ -46,5 +46,9 @@ export const RProduct = {
 
     PUT_BRANCH : 'v1/products/:id/branches/:child_id.PUT',
     POST_BRANCH:'v1/products/:id/branches/.POST',
-    DELETE_BRANCH:'v1/products/:id/branches/:child_id.DELETE'
+    DELETE_BRANCH:'v1/products/:id/branches/:child_id.DELETE',
+
+    PUT_SIZE:'v1/products/:id/sizes/:child_id.PUT',
+    POST_SIZE:'v1/products/:id/sizes/.POST',
+    DELETE_SIZE:'v1/products/:id/sizes/:child_id.DELETE'
 }

@@ -38,7 +38,7 @@ export const ProductBranches: FC = () => {
   return (
     <div className="card p-4 my-4">
       <span className="text-dark fw-bold fs-6">Chi nhánh</span>
-      <div className='card-body py-3'>
+      <div className='card-body p-2'>
         <div className='table-responsive'>
           <RoleLayout permissionPath={RProduct.POST_BRANCH}>
             <form className="d-flex align-items-center mb-4" onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ export const ProductBranches: FC = () => {
             <tbody>
               {
                 data?.context.data?.map((i, index) => (
-                  <Tr key={index} item={i} />
+                  <Tr key={i.branch.id} item={i} />
                 ))
               }
             </tbody>

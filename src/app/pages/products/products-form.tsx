@@ -2,17 +2,17 @@ import { PageTitle, RoleLayout, SelectCategory, SelectTag, Snack, SwitchButton, 
 import { PProduct, RProduct } from "app/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
-import {  ProductBody } from "app/models";
+import { ProductBody } from "app/models";
 import { useMutation, useQuery } from "react-query";
 import { QR_KEY } from "configs";
 import { _product } from "app/apis";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent,  } from "react";
 import { useMedia, useMessage } from "app/hooks";
 import { LoadingButton } from "@mui/lab";
 import "./style.scss"
 import { AxiosError } from "axios";
 import { pickBy, identity } from "lodash"
-import { ProductBranches, ProductMedia } from "./module";
+import { ProductBranches, ProductMedia, ProductSizes } from "./module";
 
 function ProductForm() {
   const { id } = useParams()
@@ -184,20 +184,11 @@ function ProductForm() {
         </div>
         <ProductMedia />
         <ProductBranches />
-        <ProductSize />
+        <ProductSizes />
       </>
     </RoleLayout>
   );
 }
 
-
-
-const ProductSize: FC = () => {
-  return (
-    <div className="card p-4 my-4">
-      <span className="text-dark fw-bold fs-6">Size/loại</span>
-    </div>
-  )
-}
 
 export default ProductForm;

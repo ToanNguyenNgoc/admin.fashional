@@ -1,4 +1,4 @@
-import { Product, ProductBody, ProductBranch, ProductMedia, QrProduct, ResponseDetail, ResponseList } from "app/models";
+import { Product, ProductBody, ProductBranch, ProductMedia, ProductSize, QrProduct, ResponseDetail, ResponseList } from "app/models";
 import { axiosConfig } from "configs";
 
 export const _product = {
@@ -33,5 +33,15 @@ export const _product = {
   updateBranch: (product_id: number | string, child_id: number | string, body: { quantity?: number, status?: boolean }) => axiosConfig
     .put(`/v1/products/${product_id}/branches/${child_id}`, body),
   deleteBranch: (product_id: number | string, child_id: number | string) => axiosConfig
-    .delete(`/v1/products/${product_id}/branches/${child_id}`)
+    .delete(`/v1/products/${product_id}/branches/${child_id}`),
+
+  findSizes: (product_id: number | string) => axiosConfig
+    .get(`/v1/products/${product_id}/sizes`)
+    .then<ResponseList<ProductSize[]>>(res => res.data),
+  createSize: (product_id: number | string, body: { name?: string, status?: boolean }) => axiosConfig
+    .post(`/v1/products/${product_id}/sizes`, body),
+  updateSize: (product_id: number | string, child_id: number | string, body: { name?: string, status?: boolean }) => axiosConfig
+    .put(`/v1/products/${product_id}/sizes/${child_id}`, body),
+  deleteSize: (product_id: number | string, child_id: number | string) => axiosConfig
+    .delete(`/v1/products/${product_id}/sizes/${child_id}`),
 }

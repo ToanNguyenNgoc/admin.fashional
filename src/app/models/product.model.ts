@@ -41,6 +41,14 @@ export interface ProductBranch{
     branch:Branch;
     created_at:string;
 }
+export interface ProductSize{
+    id:number;
+    name:string;
+    product_id:number;
+    status:boolean;
+    updated_at:string;
+    created_at:string
+}
 export interface QrProduct extends Page {
     search?: string;
     branch_ids?: number | string;
