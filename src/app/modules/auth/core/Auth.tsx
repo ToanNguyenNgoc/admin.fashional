@@ -14,7 +14,7 @@ import { WithChildren } from '../../../../_metronic/helpers'
 import { _auth } from 'app/apis'
 import { User, UserRole } from 'app/models'
 import Cookies from 'js-cookie'
-import { ACCESS_TOKEN } from 'app/constants'
+import { ACCESS_TOKEN, TOKEN_EXPERTED_AT } from 'app/constants'
 
 type AuthContextProps = {
   auth: User | undefined
@@ -55,9 +55,11 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
     }
   }
 
-  const logout = () => {
+  const logout = async () => {
     saveAuth(undefined)
     Cookies.remove(ACCESS_TOKEN)
+    Cookies.remove(TOKEN_EXPERTED_AT)
+    await _auth.logout()
     setCurrentUser(undefined)
   }
 

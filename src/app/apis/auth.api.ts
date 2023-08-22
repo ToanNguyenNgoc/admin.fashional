@@ -16,5 +16,6 @@ export const _auth = {
   roles: () => {
     return axiosConfig.get('/v1/auth/roles', { params: { 'includes': 'permissions' } })
       .then<ResponseList<UserRole[]>>(res => res.data)
-  }
+  },
+  logout: () => axiosConfig.post('/v1/auth/logout')
 }
