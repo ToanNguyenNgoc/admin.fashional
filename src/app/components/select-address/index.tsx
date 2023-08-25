@@ -66,22 +66,19 @@ export const SelectAddress: FC<AddressSelectProps> = ({
   return (
     <>
       <div className='row mb-6'>
-        <label className='col-lg-4 col-form-label required'>Tỉnh/thành phố</label>
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            refProvince.current?.classList.toggle('province_select_act')
-            refDistrict.current?.classList.remove('district_select_act')
-          }}
-          className='col-lg-8 fv-row province_cnt'
-        >
-          <input
-            disabled
-            type="text"
-            className='form-control form-control-lg form-control-solid'
-            placeholder='Province'
-            value={listSearch?.find(i => i.code === values?.province)?.name ?? '---'}
-          />
+        <label onClick={() => console.log(refProvince)} className='col-lg-4 col-form-label required'>Tỉnh/thành phố</label>
+        <div className='col-lg-8 fv-row province_cnt'>
+          <button
+            type="button"
+            className='form-control form-control-lg form-control-solid' style={{ textAlign: 'left' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              refProvince.current?.classList.toggle('province_select_act')
+              refDistrict.current?.classList.remove('district_select_act')
+            }}
+          >
+            {listSearch?.find(i => i.code === values?.province)?.name ?? '---'}
+          </button>
           <Box sx={{ boxShadow: 3 }}
             onClick={(e) => e.stopPropagation()}
             ref={refProvince} className="province_select"
@@ -114,22 +111,17 @@ export const SelectAddress: FC<AddressSelectProps> = ({
         <label className='col-lg-4 col-form-label'>
           <span className='required'>Quận/huyện</span>
         </label>
-
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            refDistrict.current?.classList.toggle('district_select_act')
-            refWard.current?.classList.remove('ward_select_act')
-          }}
-          className='col-lg-8 fv-row province_cnt'
-        >
-          <input
-            disabled
-            type='tel'
-            className='form-control form-control-lg form-control-solid'
-            placeholder='District'
-            value={districts?.context?.data?.find(i => i.code === values?.district)?.name ?? '---'}
-          />
+        <div className='col-lg-8 fv-row province_cnt'>
+          <button
+            type="button" style={{ textAlign: 'left' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              refDistrict.current?.classList.toggle('district_select_act')
+              refWard.current?.classList.remove('ward_select_act')
+            }}
+            className='form-control form-control-lg form-control-solid'>
+            {districts?.context?.data?.find(i => i.code === values?.district)?.name ?? '---'}
+          </button>
           <Box sx={{ boxShadow: 3 }}
             onClick={(e) => e.stopPropagation()}
             ref={refDistrict} className="province_select"
@@ -156,20 +148,18 @@ export const SelectAddress: FC<AddressSelectProps> = ({
         <label className='col-lg-4 col-form-label'>
           <span className='required'>Xã/phường</span>
         </label>
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            refWard.current?.classList.toggle('ward_select_act')
-          }}
-          className='col-lg-8 fv-row province_cnt'
-        >
-          <input
-            disabled
-            type='text'
+        <div className='col-lg-8 fv-row province_cnt'>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              refWard.current?.classList.toggle('ward_select_act')
+            }}
             className='form-control form-control-lg form-control-solid'
-            placeholder='Ward'
-            value={wards?.context?.data?.find((i: any) => i.code === values?.ward)?.name ?? '---'}
-          />
+            style={{ textAlign: 'left' }}
+          >
+            {wards?.context?.data?.find((i: any) => i.code === values?.ward)?.name ?? '---'}
+          </button>
           <Box
             sx={{ boxShadow: 3 }}
             onClick={(e) => e.stopPropagation()}

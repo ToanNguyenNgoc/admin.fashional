@@ -31,7 +31,7 @@ function AccountForm() {
       fullname: '',
       email: '',
       telephone: '',
-      avatar: '',
+      avatar: undefined,
       status: false,
       password: '',
       password_confirm: '',

@@ -27,5 +27,6 @@ export const QR_KEY = {
     product:'product',
     product_media:'product_media',
     product_branch:'product_branch',
-    product_size:'product_size'
+    product_size:'product_size',
+    order:'order'
 }

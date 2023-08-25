@@ -44,11 +44,18 @@ export const RProduct = {
     PUT: 'v1/products/:id.PUT',
     DELETE: 'v1/products/:id.DELETE',
 
-    PUT_BRANCH : 'v1/products/:id/branches/:child_id.PUT',
-    POST_BRANCH:'v1/products/:id/branches/.POST',
-    DELETE_BRANCH:'v1/products/:id/branches/:child_id.DELETE',
+    PUT_BRANCH: 'v1/products/:id/branches/:child_id.PUT',
+    POST_BRANCH: 'v1/products/:id/branches/.POST',
+    DELETE_BRANCH: 'v1/products/:id/branches/:child_id.DELETE',
 
-    PUT_SIZE:'v1/products/:id/sizes/:child_id.PUT',
-    POST_SIZE:'v1/products/:id/sizes/.POST',
-    DELETE_SIZE:'v1/products/:id/sizes/:child_id.DELETE'
+    PUT_SIZE: 'v1/products/:id/sizes/:child_id.PUT',
+    POST_SIZE: 'v1/products/:id/sizes/.POST',
+    DELETE_SIZE: 'v1/products/:id/sizes/:child_id.DELETE'
+}
+export const ROrder = {
+    GET: 'v1/orders.GET',
+    GET_ID: 'v1/orders/:id.GET',
+    POST: 'v1/orders.POST',
+    PUT: 'v1/orders/:id.PUT',
+    DELETE: 'v1/orders/:id.DELETE'
 }

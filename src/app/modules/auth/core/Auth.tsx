@@ -56,10 +56,10 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
   }
 
   const logout = async () => {
+    await _auth.logout()
     saveAuth(undefined)
     Cookies.remove(ACCESS_TOKEN)
     Cookies.remove(TOKEN_EXPERTED_AT)
-    await _auth.logout()
     setCurrentUser(undefined)
   }
 

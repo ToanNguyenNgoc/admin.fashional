@@ -7,7 +7,7 @@ import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import { PAccount, PBranch, PCategory, PProduct, PRole, PTag } from 'app/constants'
+import { PAccount, PBranch, PCategory, POrder, PProduct, PRole, PTag } from 'app/constants'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -27,6 +27,8 @@ const PrivateRoutes = () => {
   const CategoryFormPage = lazy(()=> import("../pages/categories/category-form"))
   const ProductPage = lazy(() => import('../pages/products/index'))
   const ProductFormPage = lazy(() => import("../pages/products/products-form"))
+  const OrderPage = lazy(() => import("../pages/orders/index"))
+  const OrderFormPage = lazy(() => import("../pages/orders/module/order-form"))
 
   const listOfRoleRoute:Array<{
     path:string;
@@ -100,6 +102,19 @@ const PrivateRoutes = () => {
     {
       path:PProduct.update,
       element:<ProductFormPage/>
+    },
+    // [Order]
+    {
+      path:POrder.index,
+      element:<OrderPage/>
+    },
+    {
+      path:POrder.create,
+      element:<OrderFormPage/>
+    },
+    {
+      path:POrder.update,
+      element:<OrderFormPage/>
     }
   ]
 

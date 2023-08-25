@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { KTSVG } from '../../../helpers'
 import { AsideMenuItemWithSub } from './AsideMenuItemWithSub'
 import { AsideMenuItem } from './AsideMenuItem'
-import { PAccount, PBranch, PCategory, PProduct, PRole, PTag, RAccount, RBranch, RCategory, RProduct, RRole, RTag } from 'app/constants'
+import { PAccount, PBranch, PCategory, POrder, PProduct, PRole, PTag, RAccount, RBranch, RCategory, ROrder, RProduct, RRole, RTag } from 'app/constants'
 import { RoleLayout } from 'app/components'
 
 export function AsideMenuMain() {
@@ -122,6 +122,12 @@ export function AsideMenuMain() {
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Hệ thống</span>
         </div>
       </div>
+      <RoleLayout permissionPath={ROrder.GET}>
+        <AsideMenuItem fontIcon='bi-chat-left'
+          icon='/media/icons/duotune/ecommerce/ecm006.svg'
+          to={POrder.index} title='Danh sách đơn hàng'
+        />
+      </RoleLayout>
       <AsideMenuItemWithSub
         to='/apps/chat'
         title='Nhân viên & Phân quyền'

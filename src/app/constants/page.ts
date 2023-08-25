@@ -31,3 +31,9 @@ export const PRole = {
     update: '/pages/roles-form/:id',
     update_id: (id: number | string) => `/pages/roles-form/${id}`
 }
+export const POrder = {
+    index: '/pages/orders',
+    create: '/pages/orders-form',
+    update: '/pages/orders-form/:id',
+    update_id: (id: number | string) => `/pages/orders-form/${id}`
+}
