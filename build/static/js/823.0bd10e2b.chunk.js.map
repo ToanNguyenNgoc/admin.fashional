@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/823.0bd10e2b.chunk.js","mappings":"mJAQA,UARA,WACE,OACE","sources":["app/pages/orders/module/order-form.tsx"],"sourcesContent":["function OrderForm() {\n  return (\n    <div>\n\n    </div>\n  )\n}\n\nexport default OrderForm;"],"names":[],"sourceRoot":""}
