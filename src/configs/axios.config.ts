@@ -24,18 +24,25 @@ axiosConfig.interceptors.request.use(async (config) => {
     }
     const { refresh, token } = validRefreshToken()
     if (refresh && token) {
-        const response = await axios.post(`${baseURL}/v1/auth/refresh`, {}, { withCredentials: true })
-        Cookies.set(ACCESS_TOKEN, response.data.context.accessToken, {
-            secure: true
-        })
-        Cookies.set(TOKEN_EXPERTED_AT, response.data.context.token_expired_at, {
-            secure: true
-        })
-        config = {
-            ...config,
-            headers: {
-                'Authorization': `Bearer ${response.data.context.accessToken}`
-            }
+        try {
+            const response = await axios.post(`${baseURL}/v1/auth/refresh`, {}, { withCredentials: true })
+            Cookies.set(ACCESS_TOKEN, response.data.context.accessToken, {
+                secure: true
+            })
+            Cookies.set(TOKEN_EXPERTED_AT, response.data.context.token_expired_at, {
+                secure: true
+            })
+            config = {
+                ...config,
+                headers: {
+                    'Authorization': `Bearer ${response.data.context.accessToken}`
+                }
+            }   
+        } catch (error) {
+            await axios.post(`${baseURL}/v1/auth/logout`)
+            Cookies.remove(ACCESS_TOKEN)
+            Cookies.remove(TOKEN_EXPERTED_AT)
+            window.location.reload()
         }
     }
     return config

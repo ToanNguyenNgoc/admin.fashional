@@ -1,4 +1,4 @@
-import { PageTitle, RoleLayout, SelectCategory, SelectTag, Snack, SwitchButton, UploadBtn } from "app/components";
+import { FCkEditor, PageTitle, RoleLayout, SelectCategory, SelectTag, Snack, SwitchButton, UploadBtn } from "app/components";
 import { PProduct, RProduct } from "app/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
@@ -6,7 +6,7 @@ import { ProductBody } from "app/models";
 import { useMutation, useQuery } from "react-query";
 import { QR_KEY } from "configs";
 import { _product } from "app/apis";
-import { ChangeEvent,  } from "react";
+import { ChangeEvent } from "react";
 import { useMedia, useMessage } from "app/hooks";
 import { LoadingButton } from "@mui/lab";
 import "./style.scss"
@@ -139,9 +139,9 @@ function ProductForm() {
             </div>
             <div className="column my-3">
               <label className="form-label required">Mô tả</label>
-              <input
-                type="text" className="form-control form-control-solid"
-                name="short_content" value={values.short_content} onChange={handleChange}
+              <FCkEditor
+                value={values.short_content}
+                onChange={(e) => setFieldValue('short_content', e)}
               />
             </div>
             <div className="d-flex row-2">
@@ -189,6 +189,4 @@ function ProductForm() {
     </RoleLayout>
   );
 }
-
-
-export default ProductForm;
+export default ProductForm

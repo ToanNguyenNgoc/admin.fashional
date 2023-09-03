@@ -50,7 +50,7 @@ export const SelectPermission: FC<SelectPermissionProps> = ({ permission_ids = [
         </div>
         <div className="per-body">
           {
-            permissionsGroup?.map((item, index: number) => (
+            permissionsGroup?.sort((a, b) => a.group_name.localeCompare(b.group_name)).map((item, index: number) => (
               <div key={index} className="per-body-item">
                 <div className="item-name">
                   <span>{item.group_name}</span>
